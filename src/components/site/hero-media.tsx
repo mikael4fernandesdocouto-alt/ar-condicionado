@@ -29,7 +29,7 @@ export function HeroMedia() {
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       <Image
-        src={asset("/hero/hero.jpg")}
+        src={asset("/hero/hero-haier.jpg")}
         alt=""
         fill
         sizes="100vw"
@@ -41,7 +41,7 @@ export function HeroMedia() {
       {HERO_VIDEO_SRC && canPlayVideo ? (
         <video
           src={asset(HERO_VIDEO_SRC)}
-          poster={asset("/hero/hero.jpg")}
+          poster={asset("/hero/hero-haier.jpg")}
           autoPlay
           muted
           loop
