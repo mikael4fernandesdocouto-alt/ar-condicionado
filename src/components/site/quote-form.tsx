@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Check } from "lucide-react";
 import { SERVICES, getService } from "@/lib/services";
 import { requestSchema, type RequestForm } from "@/lib/request-schema";
 import { cn } from "@/lib/cn";
@@ -121,6 +122,7 @@ export function QuoteForm() {
       id="orcamento"
       onSubmit={handleSubmit}
       noValidate
+      data-reveal="right"
       className="scroll-mt-28 rounded-frame border border-azul-200 bg-white p-5 sm:p-7"
     >
       <div className="flex flex-col gap-8">
@@ -138,11 +140,11 @@ export function QuoteForm() {
                   aria-pressed={active}
                   onClick={() => setServiceId(service.id)}
                   className={cn(
-                    "flex w-full items-start gap-4 border-b border-azul-200 py-4 text-left transition-colors duration-150",
+                    "group flex w-full items-start gap-4 border-b border-azul-200 py-4 text-left transition-colors duration-150",
                     active ? "bg-azul-300/25" : "hover:bg-azul-100/70",
                   )}
                 >
-                  <span className="w-6 shrink-0 pt-0.5 font-display text-sm text-azul-700">
+                  <span className="w-6 shrink-0 pt-0.5 font-display text-sm text-azul-700 transition-transform duration-200 group-hover:translate-x-0.5">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span className="flex-1">
@@ -153,12 +155,20 @@ export function QuoteForm() {
                       <span
                         aria-hidden
                         className={cn(
-                          "h-3 w-3 shrink-0 rounded-frame border transition-colors duration-150",
+                          "flex h-3 w-3 shrink-0 items-center justify-center rounded-frame border transition-[background-color,border-color,transform] duration-200 group-hover:scale-110",
                           active
-                            ? "border-azul-600 bg-azul-600"
+                            ? "scale-110 border-azul-600 bg-azul-600"
                             : "border-azul-300",
                         )}
-                      />
+                      >
+                        {active ? (
+                          <Check
+                            aria-hidden
+                            strokeWidth={3}
+                            className="size-2.5 text-white"
+                          />
+                        ) : null}
+                      </span>
                     </span>
                     <span className="mt-1 block text-sm leading-relaxed text-azul-700">
                       {service.summary}
@@ -256,7 +266,7 @@ export function QuoteForm() {
         <div className="flex flex-col gap-3 border-t border-azul-200 pt-6">
           <button
             type="submit"
-            className="rounded-frame bg-azul-600 px-6 py-3.5 text-base font-semibold text-white transition-colors duration-150 hover:bg-azul-700"
+            className="rounded-frame bg-azul-600 px-6 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-azul-700 active:translate-y-0"
           >
             Abrir WhatsApp com o pedido
           </button>

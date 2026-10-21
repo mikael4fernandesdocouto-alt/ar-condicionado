@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// Foto: Pexels #18495294 - "A Desk in an Office" - Soulkid Photography
-// https://www.pexels.com/photo/a-desk-in-an-office-18495294/
+// Imagem de hero fornecida pelo cliente.
 const HERO_VIDEO_SRC = "";
 
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/+$/, "");
@@ -36,7 +35,7 @@ export function HeroMedia() {
         sizes="100vw"
         loading="eager"
         fetchPriority="high"
-        className="object-cover"
+        className="hero-photo object-cover object-[62%_center] sm:object-center"
       />
 
       {HERO_VIDEO_SRC && canPlayVideo ? (

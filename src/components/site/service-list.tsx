@@ -6,9 +6,11 @@ export function ServiceList() {
       {SERVICES.map((service, index) => (
         <li
           key={service.id}
-          className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-4 gap-y-2 border-b border-azul-200 py-6 sm:grid-cols-[3rem_minmax(0,15rem)_minmax(0,1fr)] sm:gap-x-6"
+          data-reveal
+          style={{ transitionDelay: `${index * 70}ms` }}
+          className="group grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-4 gap-y-2 border-b border-azul-200 py-6 sm:grid-cols-[3rem_minmax(0,15rem)_minmax(0,1fr)] sm:gap-x-6"
         >
-          <span className="row-span-2 font-display text-sm text-azul-700 sm:row-span-1">
+          <span className="row-span-2 font-display text-sm text-azul-700 transition-transform duration-200 group-hover:translate-x-0.5 sm:row-span-1">
             {String(index + 1).padStart(2, "0")}
           </span>
           <div>

@@ -33,7 +33,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200",
+        "site-header-enter fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200",
         scrolled
           ? "border-azul-200 bg-white/95 backdrop-blur-sm"
           : "border-transparent",
