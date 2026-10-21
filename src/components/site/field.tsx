@@ -20,17 +20,20 @@ export function Field({
       <div className="flex items-baseline justify-between gap-3">
         <label
           htmlFor={htmlFor}
-          className="text-sm font-medium text-gelo-100"
+          className="text-sm font-medium text-azul-950"
         >
           {label}
         </label>
         {hint ? (
-          <span className="font-mono text-[11px] text-gelo-500">{hint}</span>
+          <span className="text-xs text-azul-700">{hint}</span>
         ) : null}
       </div>
       {children}
       {error ? (
-        <p role="alert" className="text-sm text-ambar-400">
+        <p
+          role="alert"
+          className="border-l-2 border-azul-700 pl-2 text-sm font-medium text-azul-700"
+        >
           {error}
         </p>
       ) : null}
@@ -40,8 +43,10 @@ export function Field({
 
 export const fieldClasses = (hasError?: boolean) =>
   cn(
-    "w-full rounded-xl border bg-carvao-800 px-4 py-3 text-base text-gelo-50",
-    "placeholder:text-gelo-500/80 transition-colors",
-    "focus:border-ciano-400 focus:outline-none",
-    hasError ? "border-ambar-500/70" : "border-gelo-100/12",
+    "w-full rounded-frame border bg-azul-100/40 px-3.5 py-3 text-base text-azul-950",
+    "placeholder:text-azul-600 transition-colors duration-150",
+    "focus:border-azul-600",
+    hasError
+      ? "border-azul-700 ring-1 ring-azul-700/30"
+      : "border-azul-200",
   );

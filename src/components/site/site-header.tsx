@@ -13,62 +13,73 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
   function goToForm() {
+    const behavior = prefersReducedMotion() ? "auto" : "smooth";
     document.getElementById("orcamento")?.scrollIntoView({
-      behavior: "smooth",
+      behavior,
       block: "start",
     });
     const firstField = document.getElementById("location");
-    window.setTimeout(() => firstField?.focus({ preventScroll: true }), 450);
+    window.setTimeout(
+      () => firstField?.focus({ preventScroll: true }),
+      behavior === "auto" ? 0 : 450,
+    );
   }
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-30 transition-colors duration-300",
+        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200",
         scrolled
-          ? "border-b border-gelo-100/10 bg-carvao-950/85 backdrop-blur"
-          : "border-b border-transparent",
+          ? "border-azul-200 bg-white/95 backdrop-blur-sm"
+          : "border-transparent",
       )}
     >
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-5 py-4">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <a
           href="#topo"
-          className="flex items-center gap-2.5 rounded-md"
+          className="flex flex-col leading-none"
           onClick={(event) => {
             event.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({
+              top: 0,
+              behavior: prefersReducedMotion() ? "auto" : "smooth",
+            });
           }}
         >
           <span
-            aria-hidden
-            className="grid h-9 w-9 place-items-center rounded-lg bg-ciano-500 text-carvao-950"
+            className={cn(
+              "font-display text-xl tracking-tight",
+              scrolled ? "text-azul-950" : "text-white",
+            )}
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
-              <path
-                d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-            </svg>
+            Clima Sul
           </span>
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold tracking-tight text-gelo-50">
-              Clima Sul
-            </span>
-            <span className="font-mono text-[11px] text-gelo-500">
-              técnicos de ar-condicionado
-            </span>
+          <span
+            className={cn(
+              "mt-1 text-[11px]",
+              scrolled ? "text-azul-700" : "text-azul-300",
+            )}
+          >
+            técnicos de ar-condicionado
           </span>
         </a>
 
         <button
           type="button"
           onClick={goToForm}
-          className="rounded-full border border-gelo-100/20 px-4 py-2 text-sm font-medium text-gelo-100 transition-colors hover:border-ambar-500 hover:text-ambar-400"
+          className={cn(
+            "rounded-frame border px-3.5 py-2 text-sm font-medium transition-colors duration-150",
+            scrolled
+              ? "border-azul-200 text-azul-700 hover:border-azul-600 hover:text-azul-950"
+              : "border-white/40 text-white hover:border-azul-300 hover:text-azul-100",
+          )}
         >
-          Pedir orçamento
+          Orçamento
         </button>
       </div>
     </header>

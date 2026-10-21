@@ -1,31 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-carvao-950: #071013;
-  --color-carvao-900: #0c1a1f;
-  --color-carvao-800: #12262c;
-  --color-carvao-700: #1b343c;
-  --color-gelo-50: #f4fafb;
-  --color-gelo-100: #eaf4f6;
-  --color-gelo-300: #b9d3d8;
-  --color-gelo-500: #6b7d82;
-  --color-ciano-400: #46d3e6;
-  --color-ciano-500: #27c4d9;
-  --color-ciano-600: #169cb2;
-  --color-ambar-400: #ffb454;
-  --color-ambar-500: #ff9f1c;
+  --color-azul-950: #0f2733;
+  --color-azul-700: #2f6488;
+  --color-azul-600: #4180ab;
+  --color-azul-300: #8ab3cf;
+  --color-azul-200: #bdd1de;
+  --color-azul-100: #e4ebf0;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-body-face), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-frame: 2px;
 }
 
 :root {
-  --background: var(--color-carvao-900);
-  --foreground: var(--color-gelo-100);
+  --background: #ffffff;
+  --foreground: var(--color-azul-950);
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -36,13 +32,18 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-ciano-500);
-  color: var(--color-carvao-950);
+  background-color: var(--color-azul-300);
+  color: var(--color-azul-950);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-ciano-400);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-azul-600);
+  outline-offset: 3px;
+}
+
+.hero-viewport {
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -57,28 +58,4 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-.grain {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(234, 244, 246, 0.06) 1px,
-    transparent 0
-  );
-  background-size: 22px 22px;
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.rise {
-  animation: rise 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }

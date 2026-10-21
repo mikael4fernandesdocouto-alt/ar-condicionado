@@ -121,15 +121,15 @@ export function QuoteForm() {
       id="orcamento"
       onSubmit={handleSubmit}
       noValidate
-      className="scroll-mt-24 rounded-3xl border border-gelo-100/10 bg-carvao-800/70 p-5 sm:p-7"
+      className="scroll-mt-28 rounded-frame border border-azul-200 bg-white p-5 sm:p-7"
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-8">
         <fieldset className="flex flex-col gap-3">
-          <legend className="text-sm font-medium text-gelo-100">
+          <legend className="text-sm font-medium text-azul-950">
             O que o aparelho precisa?
           </legend>
-          <div className="grid gap-2.5 sm:grid-cols-2">
-            {SERVICES.map((service) => {
+          <div className="border-t border-azul-200">
+            {SERVICES.map((service, index) => {
               const active = serviceId === service.id;
               return (
                 <button
@@ -138,39 +138,47 @@ export function QuoteForm() {
                   aria-pressed={active}
                   onClick={() => setServiceId(service.id)}
                   className={cn(
-                    "rounded-2xl border p-4 text-left transition-colors",
-                    active
-                      ? "border-ciano-500 bg-ciano-500/10"
-                      : "border-gelo-100/12 bg-carvao-800 hover:border-gelo-100/25",
+                    "flex w-full items-start gap-4 border-b border-azul-200 py-4 text-left transition-colors duration-150",
+                    active ? "bg-azul-300/25" : "hover:bg-azul-100/70",
                   )}
                 >
-                  <span className="flex items-center justify-between gap-3">
-                    <span className="text-base font-semibold text-gelo-50">
-                      {service.label}
-                    </span>
-                    <span
-                      aria-hidden
-                      className={cn(
-                        "h-2.5 w-2.5 shrink-0 rounded-full transition-colors",
-                        active ? "bg-ciano-400" : "bg-gelo-100/20",
-                      )}
-                    />
+                  <span className="w-6 shrink-0 pt-0.5 font-display text-sm text-azul-700">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="mt-1.5 block text-sm leading-relaxed text-gelo-300">
-                    {service.summary}
+                  <span className="flex-1">
+                    <span className="flex items-baseline justify-between gap-4">
+                      <span className="text-base font-medium text-azul-950">
+                        {service.label}
+                      </span>
+                      <span
+                        aria-hidden
+                        className={cn(
+                          "h-3 w-3 shrink-0 rounded-frame border transition-colors duration-150",
+                          active
+                            ? "border-azul-600 bg-azul-600"
+                            : "border-azul-300",
+                        )}
+                      />
+                    </span>
+                    <span className="mt-1 block text-sm leading-relaxed text-azul-700">
+                      {service.summary}
+                    </span>
                   </span>
                 </button>
               );
             })}
           </div>
           {errors.serviceId ? (
-            <p role="alert" className="text-sm text-ambar-400">
+            <p
+              role="alert"
+              className="border-l-2 border-azul-700 pl-2 text-sm font-medium text-azul-700"
+            >
               {errors.serviceId}
             </p>
           ) : null}
         </fieldset>
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-3">
           <Field
             label="Onde você está"
             hint="bairro, cidade ou CEP"
@@ -192,26 +200,26 @@ export function QuoteForm() {
             type="button"
             onClick={fillLocation}
             disabled={locating}
-            className="self-start rounded-full border border-gelo-100/20 px-4 py-2 text-sm font-medium text-gelo-100 transition-colors hover:border-ciano-400 hover:text-ciano-400 disabled:opacity-60"
+            className="w-fit rounded-frame border border-azul-300 px-4 py-2 text-sm font-medium text-azul-700 transition-colors duration-150 hover:border-azul-600 hover:text-azul-950 disabled:opacity-60"
           >
             {locating ? "Buscando sua localização..." : "Usar minha localização"}
           </button>
 
           <div aria-live="polite" className="min-h-6">
             {remote.address ? (
-              <p className="text-sm text-gelo-300">
+              <p className="text-sm text-azul-700">
                 Sugestão:{" "}
                 <button
                   type="button"
                   onClick={() => setLocation(remote.address)}
-                  className="text-ciano-400 underline decoration-dotted underline-offset-4"
+                  className="text-azul-700 underline decoration-azul-300 underline-offset-4 hover:text-azul-950"
                 >
                   {remote.address}
                 </button>
               </p>
             ) : null}
             {remote.message ? (
-              <p className="text-sm text-gelo-500">{remote.message}</p>
+              <p className="text-sm text-azul-700">{remote.message}</p>
             ) : null}
           </div>
         </div>
@@ -245,25 +253,25 @@ export function QuoteForm() {
           />
         </Field>
 
-        <div className="flex flex-col gap-3 border-t border-gelo-100/10 pt-6">
+        <div className="flex flex-col gap-3 border-t border-azul-200 pt-6">
           <button
             type="submit"
-            className="rounded-full bg-ambar-500 px-6 py-3.5 text-base font-semibold text-carvao-950 transition-colors hover:bg-ambar-400"
+            className="rounded-frame bg-azul-600 px-6 py-3.5 text-base font-semibold text-white transition-colors duration-150 hover:bg-azul-700"
           >
-            Falar com um técnico no WhatsApp
+            Abrir WhatsApp com o pedido
           </button>
-          <p className="text-sm leading-relaxed text-gelo-500">
+          <p className="text-sm leading-relaxed text-azul-700">
             Abrimos o WhatsApp com a sua mensagem pronta. Você confere e toca
             em enviar — nada é enviado sem você.
           </p>
           {sent ? (
-            <p className="text-sm text-ciano-400">
+            <p className="text-sm text-azul-700">
               WhatsApp aberto em outra aba.{" "}
               <a
                 href={sent}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-dotted underline-offset-4"
+                className="text-azul-700 underline decoration-azul-300 underline-offset-4 hover:text-azul-950"
               >
                 Abrir de novo
               </a>
