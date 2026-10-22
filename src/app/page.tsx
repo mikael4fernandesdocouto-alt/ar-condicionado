@@ -155,7 +155,19 @@ export default function Home() {
             Atendimento em domicílio. Envie a solicitação e o técnico da sua
             região responde no WhatsApp.
           </p>
-          <p className="font-display text-lg text-azul-950">Clima Sul</p>
+          <div className="flex items-center gap-2">
+            <p className="font-display text-lg text-azul-950">Clima Sul</p>
+            <a
+              href="http://127.0.0.1:4310/"
+              target="_blank"
+              rel="noreferrer nofollow"
+              aria-label="Abrir painel administrativo local"
+              title="Acesso restrito ao painel local"
+              className="inline-flex size-8 items-center justify-center rounded-full text-lg leading-none text-azul-300 transition-colors duration-200 hover:text-azul-600 focus-visible:text-azul-600"
+            >
+              <span aria-hidden>·</span>
+            </a>
+          </div>
         </div>
       </footer>
 
