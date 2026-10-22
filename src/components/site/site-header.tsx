@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
-export function SiteHeader() {
+export function SiteHeader({ quoteHref }: { quoteHref?: string }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -32,6 +33,13 @@ export function SiteHeader() {
     );
   }
 
+  const quoteClasses = cn(
+    "rounded-frame border px-3 py-2 text-xs font-medium transition-colors duration-150 sm:px-3.5 sm:text-sm",
+    scrolled
+      ? "border-azul-200 text-azul-700 hover:border-azul-600 hover:text-azul-950"
+      : "border-white/40 text-white hover:border-azul-300 hover:text-azul-100",
+  );
+
   return (
     <header
       className={cn(
@@ -44,7 +52,7 @@ export function SiteHeader() {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <a
           href="#topo"
-          className="flex flex-col leading-none"
+          className="flex shrink-0 flex-col leading-none"
           onClick={(event) => {
             event.preventDefault();
             window.scrollTo({
@@ -71,18 +79,29 @@ export function SiteHeader() {
           </span>
         </a>
 
-        <button
-          type="button"
-          onClick={goToForm}
-          className={cn(
-            "rounded-frame border px-3.5 py-2 text-sm font-medium transition-colors duration-150",
-            scrolled
-              ? "border-azul-200 text-azul-700 hover:border-azul-600 hover:text-azul-950"
-              : "border-white/40 text-white hover:border-azul-300 hover:text-azul-100",
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+          <Link
+            href="/prestadores"
+            className={cn(
+              "text-xs font-medium transition-colors duration-150 sm:text-sm",
+              scrolled
+                ? "text-azul-700 hover:text-azul-950"
+                : "text-azul-100 hover:text-white",
+            )}
+          >
+            Prestador?
+          </Link>
+
+          {quoteHref ? (
+            <a href={quoteHref} className={quoteClasses}>
+              Orçamento
+            </a>
+          ) : (
+            <button type="button" onClick={goToForm} className={quoteClasses}>
+              Orçamento
+            </button>
           )}
-        >
-          Orçamento
-        </button>
+        </div>
       </div>
     </header>
   );

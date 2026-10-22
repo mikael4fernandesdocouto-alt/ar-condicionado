@@ -64,3 +64,29 @@ export function buildWhatsAppLink(input: {
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
+export function buildProviderWhatsAppLink(input: {
+  name: string;
+  company: string;
+  region: string;
+  whatsapp: string;
+  email: string;
+  services: string[];
+  message: string;
+}): string {
+  const lines = [
+    "Olá! Quero me cadastrar como prestador na Clima Sul.",
+    "",
+    `👤 *Nome:* ${input.name}`,
+    `🏢 *Empresa:* ${input.company || "Não informada"}`,
+    `📍 *Região atendida:* ${input.region}`,
+    `📱 *WhatsApp:* ${input.whatsapp}`,
+    `✉️ *E-mail:* ${input.email || "Não informado"}`,
+    `🛠️ *Serviços:* ${input.services.join(", ")}`,
+    `📝 *Observações:* ${input.message || "Nenhuma"}`,
+    "",
+    "✅ *Termos:* Aceito a taxa de 20% sobre o valor do serviço fechado por indicação da Clima Sul.",
+  ];
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+}
