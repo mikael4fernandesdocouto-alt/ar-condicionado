@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { SERVICES, getService } from "@/lib/services";
 import { requestSchema, type RequestForm } from "@/lib/request-schema";
+import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { Field, fieldClasses } from "./field";
 import { buildWhatsAppLink } from "@/lib/services";
@@ -114,6 +115,9 @@ export function QuoteForm() {
     });
 
     setSent(link);
+    track("whatsapp_open", {
+      service: service?.id ?? parsed.data.serviceId,
+    });
     window.open(link, "_blank", "noopener,noreferrer");
   }
 
@@ -138,7 +142,10 @@ export function QuoteForm() {
                   key={service.id}
                   type="button"
                   aria-pressed={active}
-                  onClick={() => setServiceId(service.id)}
+                  onClick={() => {
+                    setServiceId(service.id);
+                    track("service_select", { service: service.id });
+                  }}
                   className={cn(
                     "group flex w-full items-start gap-4 border-b border-azul-200 py-4 text-left transition-colors duration-150",
                     active ? "bg-azul-300/25" : "hover:bg-azul-100/70",
@@ -201,7 +208,7 @@ export function QuoteForm() {
               autoComplete="address-level2"
               value={location}
               onChange={(event) => setLocation(event.target.value)}
-              placeholder="Ex.: Ponta Negra, Natal ou 59075-000"
+              placeholder="Ex.: nome do bairro e da cidade"
               className={fieldClasses(Boolean(errors.location))}
             />
           </Field>

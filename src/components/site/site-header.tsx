@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
 export function SiteHeader() {
@@ -18,6 +19,7 @@ export function SiteHeader() {
   }
 
   function goToForm() {
+    track("cta_orcamento_click", { origem: "header" });
     const behavior = prefersReducedMotion() ? "auto" : "smooth";
     document.getElementById("orcamento")?.scrollIntoView({
       behavior,

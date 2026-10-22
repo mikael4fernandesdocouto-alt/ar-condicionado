@@ -5,10 +5,43 @@ import { QuoteForm } from "@/components/site/quote-form";
 import { ServiceList } from "@/components/site/service-list";
 import { SiteHeader } from "@/components/site/site-header";
 import { Steps } from "@/components/site/steps";
+import { SERVICES } from "@/lib/services";
+import { AREA_SERVED, CONTACT_PHONE, SITE_NAME, SITE_URL } from "@/lib/site";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  name: SITE_NAME,
+  description:
+    "Instalação, manutenção preventiva, higienização e conserto de ar-condicionado split em atendimento domiciliar.",
+  url: SITE_URL,
+  telephone: CONTACT_PHONE,
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: AREA_SERVED,
+  },
+  knowsLanguage: "pt-BR",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Serviços de ar-condicionado",
+    itemListElement: SERVICES.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.label,
+        description: service.summary,
+      },
+    })),
+  },
+};
 
 export default function Home() {
   return (
     <div id="topo" className="flex-1">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <SiteHeader />
 
       <main>
@@ -102,9 +135,9 @@ export default function Home() {
                 O que fazemos
               </h2>
               <p className="mt-4 max-w-sm text-base leading-relaxed text-azul-700">
-                Valores de referência para aparelhos split residenciais. O
-                orçamento final depende do modelo, do local da instalação e do
-                estado do equipamento — combinamos antes de começar.
+                Atendimento em domicílio para aparelhos split residenciais. O
+                valor é combinado direto com o técnico, depois de ver o modelo,
+                o local da instalação e o estado do equipamento — sem surpresa.
               </p>
             </div>
 

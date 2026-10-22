@@ -17,7 +17,9 @@ export function ServiceList() {
             <h3 className="text-lg font-medium text-azul-950">
               {service.label}
             </h3>
-            <p className="mt-1 text-sm text-azul-700">{service.priceFrom}</p>
+            <p className="mt-1 text-sm text-azul-700">
+              Orçamento com o técnico
+            </p>
           </div>
           <p className="text-sm leading-relaxed text-azul-700 sm:col-start-3 sm:row-start-1">
             {service.summary}

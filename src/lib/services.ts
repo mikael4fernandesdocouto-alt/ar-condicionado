@@ -11,7 +11,6 @@ export type Service = {
   label: string;
   whatsappLabel: string;
   summary: string;
-  priceFrom: string;
 };
 
 export const SERVICES: Service[] = [
@@ -21,7 +20,6 @@ export const SERVICES: Service[] = [
     whatsappLabel: "Instalação",
     summary:
       "Aparelho novo no lugar certo, com vácuo na linha, suporte firme e teste de vazamento.",
-    priceFrom: "a partir de R$ 250",
   },
   {
     id: "manutencao-preventiva",
@@ -29,7 +27,6 @@ export const SERVICES: Service[] = [
     whatsappLabel: "Manutenção preventiva",
     summary:
       "Revisão antes do verão: filtro, serpentina, gás e contatos elétricos conferidos.",
-    priceFrom: "a partir de R$ 180",
   },
   {
     id: "conserto",
@@ -37,7 +34,6 @@ export const SERVICES: Service[] = [
     whatsappLabel: "Conserto / manutenção corretiva",
     summary:
       "Não está gelando, pinga água ou desliga sozinho: diagnóstico do defeito e orçamento na hora.",
-    priceFrom: "diagnóstico a partir de R$ 120",
   },
   {
     id: "higienizacao",
@@ -45,7 +41,6 @@ export const SERVICES: Service[] = [
     whatsappLabel: "Higienização",
     summary:
       "Limpeza completa da evaporadora e da condensadora, contra cheiro de mofo e alergia.",
-    priceFrom: "a partir de R$ 200",
   },
 ];
 
