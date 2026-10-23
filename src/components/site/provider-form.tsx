@@ -2,25 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { providerSchema, type ProviderForm } from "@/lib/provider-schema";
 import { SERVICES, buildProviderWhatsAppLink, getService } from "@/lib/services";
-import { SITE_NAME } from "@/lib/site";
 import { Field, fieldClasses } from "./field";
 
 type Errors = Partial<Record<keyof ProviderForm, string>>;
-
-const TERMS = [
-  "O cadastro é gratuito e não garante pedidos.",
-  "A taxa de indicação só é cobrada se o serviço for fechado: R$ 200 para serviços com orçamento de R$ 400 ou mais; 30% do valor para serviços abaixo de R$ 400.",
-  "O valor, o prazo e a garantia são combinados diretamente entre você e o cliente.",
-  "Você é responsável pela execução, pela segurança e pela qualidade do serviço.",
-  `A ${SITE_NAME} pode recusar ou suspender cadastros, e você pode solicitar a exclusão a qualquer momento.`,
-  "Seus dados são usados para contato e encaminhamento de pedidos, conforme a LGPD.",
-  "As informações do cadastro devem ser verdadeiras e atualizadas.",
-];
 
 export function ProviderForm() {
   const [name, setName] = useState("");
@@ -240,35 +228,7 @@ export function ProviderForm() {
           />
         </Field>
 
-        <div
-          id="termos"
-          className="scroll-mt-28 rounded-frame border border-azul-200 bg-azul-100/60 p-4"
-        >
-          <h3 className="text-sm font-semibold text-azul-950">
-            Termos do cadastro
-          </h3>
-          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-azul-700">
-            {TERMS.map((term) => (
-              <li key={term} className="flex gap-2">
-                <Check
-                  aria-hidden
-                  className="mt-0.5 size-4 shrink-0 text-azul-600"
-                  strokeWidth={2.5}
-                />
-                <span>{term}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className="flex flex-col gap-3 border-t border-azul-200 pt-6">
-          <p className="text-sm leading-relaxed text-azul-700">
-            Consulte a{" "}
-            <Link href="/privacidade/" target="_blank" className="underline decoration-azul-300 underline-offset-4">
-              Política de Privacidade
-            </Link>{" "}
-            para saber como os dados do cadastro serão usados e encaminhados.
-          </p>
           <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-azul-700">
             <input
               type="checkbox"
@@ -278,7 +238,16 @@ export function ProviderForm() {
               className="mt-0.5 size-4 shrink-0 accent-azul-600"
             />
             <span>
-              Li e aceito os termos do cadastro e a Política de Privacidade, incluindo a taxa de indicação de{" "}
+              Li e aceito os termos do cadastro e a{" "}
+              <Link
+                href="/privacidade/"
+                target="_blank"
+                onClick={(event) => event.stopPropagation()}
+                className="underline decoration-azul-300 underline-offset-4 hover:text-azul-950"
+              >
+                Política de Privacidade
+              </Link>
+              , incluindo a taxa de indicação de{" "}
               <strong className="font-semibold text-azul-950">R$ 200</strong>{" "}
               para serviços de R$ 400 ou mais, ou{" "}
               <strong className="font-semibold text-azul-950">30%</strong> para
