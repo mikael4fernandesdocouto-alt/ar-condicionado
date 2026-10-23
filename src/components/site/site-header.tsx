@@ -51,38 +51,63 @@ export function SiteHeader({ quoteHref }: { quoteHref?: string }) {
       )}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <a
-          href="#topo"
-          className="flex shrink-0 flex-col leading-none"
-          onClick={(event) => {
-            event.preventDefault();
-            window.scrollTo({
-              top: 0,
-              behavior: prefersReducedMotion() ? "auto" : "smooth",
-            });
-          }}
-        >
-          <span
-            className={cn(
-              "font-display text-xl tracking-tight",
-              scrolled ? "text-azul-950" : "text-white",
-            )}
+        {quoteHref ? (
+          <Link
+            href="/"
+            aria-label={`${SITE_NAME} — página inicial`}
+            className="flex shrink-0 flex-col leading-none"
           >
-            {SITE_NAME}
-          </span>
-          <span
-            className={cn(
-              "mt-1 text-[11px]",
-              scrolled ? "text-azul-700" : "text-azul-300",
-            )}
+            <span
+              className={cn(
+                "font-display text-xl tracking-tight",
+                scrolled ? "text-azul-950" : "text-white",
+              )}
+            >
+              {SITE_NAME}
+            </span>
+            <span
+              className={cn(
+                "mt-1 text-[11px]",
+                scrolled ? "text-azul-700" : "text-azul-300",
+              )}
+            >
+              técnicos de ar-condicionado
+            </span>
+          </Link>
+        ) : (
+          <a
+            href="#topo"
+            className="flex shrink-0 flex-col leading-none"
+            onClick={(event) => {
+              event.preventDefault();
+              window.scrollTo({
+                top: 0,
+                behavior: prefersReducedMotion() ? "auto" : "smooth",
+              });
+            }}
           >
-            técnicos de ar-condicionado
-          </span>
-        </a>
+            <span
+              className={cn(
+                "font-display text-xl tracking-tight",
+                scrolled ? "text-azul-950" : "text-white",
+              )}
+            >
+              {SITE_NAME}
+            </span>
+            <span
+              className={cn(
+                "mt-1 text-[11px]",
+                scrolled ? "text-azul-700" : "text-azul-300",
+              )}
+            >
+              técnicos de ar-condicionado
+            </span>
+          </a>
+        )}
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
           <Link
-            href="/prestadores"
+            href={quoteHref ? "/" : "/prestadores"}
             className={cn(
               "text-xs font-medium transition-colors duration-150 sm:text-sm",
               scrolled
@@ -90,7 +115,7 @@ export function SiteHeader({ quoteHref }: { quoteHref?: string }) {
                 : "text-azul-100 hover:text-white",
             )}
           >
-            Prestador?
+            {quoteHref ? "Página inicial" : "Sou prestador"}
           </Link>
 
           {quoteHref ? (
