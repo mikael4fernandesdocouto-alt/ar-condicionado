@@ -35,7 +35,7 @@ export function HeroMedia() {
         sizes="100vw"
         loading="eager"
         fetchPriority="high"
-        className="hero-photo object-cover object-right sm:object-center"
+        className="hero-photo object-cover object-[72%_center] sm:object-center"
       />
 
       {HERO_VIDEO_SRC && canPlayVideo ? (
