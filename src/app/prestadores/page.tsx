@@ -57,10 +57,10 @@ export default function ProvidersPage() {
       <SiteHeader quoteHref={`${BASE_PATH}/#orcamento`} />
 
       <main>
-        <section className="relative isolate overflow-hidden bg-azul-950 pt-28 pb-16 sm:pt-32 sm:pb-20">
+        <section className="provider-hero relative isolate overflow-hidden bg-azul-950 pt-28 pb-16 sm:pt-32 sm:pb-20">
           <div
             aria-hidden
-            className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(65,128,171,0.38),transparent_62%)]"
+            className="provider-hero-glow absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(65,128,171,0.38),transparent_62%)]"
           />
           <div
             aria-hidden
@@ -68,22 +68,22 @@ export default function ProvidersPage() {
           />
 
           <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.18em] text-azul-300">
+            <div className="provider-hero-content">
+              <p className="provider-hero-kicker text-sm font-medium uppercase tracking-[0.18em] text-azul-300">
                 Para prestadores
               </p>
-              <h1 className="mt-4 max-w-3xl font-display text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">
+              <h1 className="provider-hero-title mt-4 max-w-3xl font-display text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">
                 Atenda os pedidos de{" "}
                 <span className="sm:whitespace-nowrap">ar-condicionado</span> da
                 sua região
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-azul-100 sm:text-lg">
+              <p className="provider-hero-copy mt-6 max-w-xl text-base leading-relaxed text-azul-100 sm:text-lg">
                 A {SITE_NAME} recebe pedidos de instalação, manutenção,
                 higienização e conserto. Quando um cliente pede um orçamento, a
                 localização informada ajuda a direcionar o atendimento ao
                 prestador mais próximo.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="provider-hero-actions mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#cadastro"
                   className="group inline-flex items-center justify-center gap-2 rounded-frame bg-azul-600 px-6 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-azul-700 active:translate-y-0"
@@ -103,7 +103,7 @@ export default function ProvidersPage() {
               </div>
             </div>
 
-            <div className="rounded-frame border border-azul-700/70 bg-white/5 p-6 backdrop-blur-sm">
+            <div className="provider-hero-card rounded-frame border border-azul-700/70 bg-white/5 p-6 backdrop-blur-sm">
               <p className="font-display text-6xl leading-none text-white">
                 R$ 200
               </p>
