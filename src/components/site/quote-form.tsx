@@ -41,17 +41,7 @@ export function QuoteForm() {
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        const { latitude, longitude, accuracy } = position.coords;
-
-        if (accuracy > 1000) {
-          setRemote({
-            message:
-              "O GPS não conseguiu confirmar sua região com precisão. Digite sua cidade, bairro ou CEP para evitar indicar um local errado.",
-            address: "",
-          });
-          setLocating(false);
-          return;
-        }
+        const { latitude, longitude } = position.coords;
 
         try {
           const params = new URLSearchParams({
