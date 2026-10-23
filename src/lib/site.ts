@@ -1,6 +1,6 @@
 import { WHATSAPP_NUMBER } from "./services";
 
-export const SITE_NAME = "Clima Sul";
+export const SITE_NAME = "Arperto";
 
 export const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(
   /\/+$/,

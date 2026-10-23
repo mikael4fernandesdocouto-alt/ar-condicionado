@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
+import { SITE_NAME } from "@/lib/site";
 
 export function SiteHeader({ quoteHref }: { quoteHref?: string }) {
   const [scrolled, setScrolled] = useState(false);
@@ -67,7 +68,7 @@ export function SiteHeader({ quoteHref }: { quoteHref?: string }) {
               scrolled ? "text-azul-950" : "text-white",
             )}
           >
-            Clima Sul
+            {SITE_NAME}
           </span>
           <span
             className={cn(

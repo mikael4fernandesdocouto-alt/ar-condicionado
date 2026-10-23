@@ -21,7 +21,7 @@ const PROVIDER_STEPS = [
   },
   {
     title: "Orçamento e serviço",
-    body: "Você combina o valor direto com o cliente. Se o serviço for fechado, a taxa da plataforma é de 20%.",
+    body: "Você combina o valor direto com o cliente. Se o serviço for fechado, a taxa de indicação é de R$ 200 para orçamentos de R$ 400 ou mais. Para orçamentos abaixo de R$ 400, a taxa é de 30% do valor.",
   },
 ];
 
@@ -29,7 +29,7 @@ const REQUIREMENTS = [
   "Atender na região do pedido.",
   "Ter WhatsApp para contato.",
   "Combinar valor, prazo e garantia direto com o cliente.",
-  "Aceitar a taxa de 20% sobre serviços fechados.",
+  "Aceitar a taxa de indicação: R$ 200 para serviços de R$ 400 ou mais; 30% para serviços abaixo de R$ 400.",
   "Responsabilizar-se pela execução e pela garantia do serviço.",
 ];
 
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `Cadastro de prestador | ${SITE_NAME}`,
     description:
-      "Atenda pedidos de ar-condicionado na sua região. Cadastro gratuito e taxa de 20% sobre o serviço fechado.",
+      "Atenda pedidos de ar-condicionado na sua região. Cadastro gratuito e taxa de indicação de R$ 200 para serviços a partir de R$ 400, ou 30% para valores menores.",
   },
 };
 
@@ -78,7 +78,7 @@ export default function ProvidersPage() {
                 sua região
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-azul-100 sm:text-lg">
-                A Clima Sul recebe pedidos de instalação, manutenção,
+                A {SITE_NAME} recebe pedidos de instalação, manutenção,
                 higienização e conserto. Quando um cliente pede um orçamento, a
                 localização informada ajuda a direcionar o atendimento ao
                 prestador mais próximo.
@@ -105,16 +105,19 @@ export default function ProvidersPage() {
 
             <div className="rounded-frame border border-azul-700/70 bg-white/5 p-6 backdrop-blur-sm">
               <p className="font-display text-6xl leading-none text-white">
-                20%
+                R$ 200
               </p>
               <p className="mt-3 text-sm leading-relaxed text-azul-100">
-                sobre o valor do serviço fechado por indicação da Clima Sul.
+                de indicação para serviços com orçamento de R$ 400 ou mais.
               </p>
               <div className="mt-6 border-t border-azul-700/70 pt-4 text-sm leading-relaxed text-azul-100">
-                Cadastro gratuito.
+                Abaixo de R$ 400: 30% do valor.
                 <br />
-                Você define seu preço.
+                Só quando o serviço é fechado.
               </div>
+              <p className="mt-4 text-xs leading-relaxed text-azul-300">
+                Cadastro gratuito. Você define seu preço.
+              </p>
             </div>
           </div>
         </section>
@@ -206,7 +209,9 @@ export default function ProvidersPage() {
                 </p>
                 <p className="mt-6 text-sm leading-relaxed text-azul-700">
                   A equipe confere as informações e entra em contato. A taxa de
-                  20% só é cobrada quando o serviço é fechado.
+                  indicação só é cobrada quando o serviço é fechado: R$ 200 para
+                  orçamentos de R$ 400 ou mais, ou 30% para valores abaixo de
+                  R$ 400.
                 </p>
               </div>
             </div>

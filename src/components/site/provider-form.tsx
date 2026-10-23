@@ -6,16 +6,17 @@ import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { providerSchema, type ProviderForm } from "@/lib/provider-schema";
 import { SERVICES, buildProviderWhatsAppLink, getService } from "@/lib/services";
+import { SITE_NAME } from "@/lib/site";
 import { Field, fieldClasses } from "./field";
 
 type Errors = Partial<Record<keyof ProviderForm, string>>;
 
 const TERMS = [
   "O cadastro é gratuito e não garante pedidos.",
-  "A Clima Sul cobra 20% sobre o valor do serviço fechado a partir de um pedido recebido pela plataforma.",
+  "A taxa de indicação só é cobrada se o serviço for fechado: R$ 200 para serviços com orçamento de R$ 400 ou mais; 30% do valor para serviços abaixo de R$ 400.",
   "O valor, o prazo e a garantia são combinados diretamente entre você e o cliente.",
   "Você é responsável pela execução, pela segurança e pela qualidade do serviço.",
-  "A Clima Sul pode recusar ou suspender cadastros, e você pode solicitar a exclusão a qualquer momento.",
+  `A ${SITE_NAME} pode recusar ou suspender cadastros, e você pode solicitar a exclusão a qualquer momento.`,
   "Seus dados são usados para contato e encaminhamento de pedidos, conforme a LGPD.",
   "As informações do cadastro devem ser verdadeiras e atualizadas.",
 ];
@@ -269,9 +270,11 @@ export function ProviderForm() {
               className="mt-0.5 size-4 shrink-0 accent-azul-600"
             />
             <span>
-              Li e aceito os termos acima, incluindo a taxa de{" "}
-              <strong className="font-semibold text-azul-950">20%</strong> sobre
-              o valor do serviço fechado.
+              Li e aceito os termos acima, incluindo a taxa de indicação de{" "}
+              <strong className="font-semibold text-azul-950">R$ 200</strong>{" "}
+              para serviços de R$ 400 ou mais, ou{" "}
+              <strong className="font-semibold text-azul-950">30%</strong> para
+              valores abaixo de R$ 400, cobrada apenas se o serviço for fechado.
             </span>
           </label>
           {errors.terms ? (

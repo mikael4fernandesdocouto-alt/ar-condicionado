@@ -75,7 +75,7 @@ export function buildProviderWhatsAppLink(input: {
   message: string;
 }): string {
   const lines = [
-    "Olá! Quero me cadastrar como prestador na Clima Sul.",
+    "Olá! Quero me cadastrar como prestador na Arperto.",
     "",
     `👤 *Nome:* ${input.name}`,
     `🏢 *Empresa:* ${input.company || "Não informada"}`,
@@ -85,7 +85,7 @@ export function buildProviderWhatsAppLink(input: {
     `🛠️ *Serviços:* ${input.services.join(", ")}`,
     `📝 *Observações:* ${input.message || "Nenhuma"}`,
     "",
-    "✅ *Termos:* Aceito a taxa de 20% sobre o valor do serviço fechado por indicação da Clima Sul.",
+    "✅ *Termos:* Aceito a taxa de indicação de R$ 200 para serviços com orçamento de R$ 400 ou mais, ou 30% para serviços abaixo de R$ 400. A taxa só é cobrada se o serviço for fechado.",
   ];
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;

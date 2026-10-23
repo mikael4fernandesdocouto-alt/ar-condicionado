@@ -20,7 +20,7 @@ const body = IBM_Plex_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Ar-condicionado: instalação, limpeza e conserto",
+  title: `Ar-condicionado: instalação, limpeza e conserto | ${SITE_NAME}`,
   description:
     "Escolha o serviço, informe onde você está e fale com um técnico de ar-condicionado perto de você pelo WhatsApp.",
   alternates: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Ar-condicionado: instalação, limpeza e conserto",
+    title: `Ar-condicionado: instalação, limpeza e conserto | ${SITE_NAME}`,
     description:
       "Instalação, manutenção preventiva, higienização e conserto de ar-condicionado em atendimento domiciliar. Orçamento direto com o técnico pelo WhatsApp.",
   },
