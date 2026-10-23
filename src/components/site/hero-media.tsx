@@ -27,7 +27,7 @@ export function HeroMedia() {
   }, []);
 
   return (
-    <div aria-hidden className="absolute inset-0 overflow-hidden">
+    <div aria-hidden className="absolute inset-0 overflow-hidden bg-azul-950">
       <Image
         src={asset("/hero/hero-haier.jpg")}
         alt=""
@@ -35,7 +35,7 @@ export function HeroMedia() {
         sizes="100vw"
         loading="eager"
         fetchPriority="high"
-        className="hero-photo object-cover object-[62%_center] sm:object-center"
+        className="hero-photo object-contain object-top sm:object-cover sm:object-center"
       />
 
       {HERO_VIDEO_SRC && canPlayVideo ? (
