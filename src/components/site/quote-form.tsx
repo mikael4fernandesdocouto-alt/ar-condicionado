@@ -41,30 +41,53 @@ export function QuoteForm() {
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        const { latitude, longitude } = position.coords;
+        const { latitude, longitude, accuracy } = position.coords;
+
+        if (accuracy > 1000) {
+          setRemote({
+            message:
+              "O GPS não conseguiu confirmar sua região com precisão. Digite sua cidade, bairro ou CEP para evitar indicar um local errado.",
+            address: "",
+          });
+          setLocating(false);
+          return;
+        }
+
         try {
+          const params = new URLSearchParams({
+            format: "jsonv2",
+            addressdetails: "1",
+            zoom: "10",
+            layer: "address",
+            lat: String(latitude),
+            lon: String(longitude),
+            "accept-language": "pt-BR",
+          });
           const response = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&accept-language=pt-BR`,
+            `https://nominatim.openstreetmap.org/reverse?${params.toString()}`,
           );
           if (!response.ok) throw new Error("reverse failed");
           const data = (await response.json()) as {
             address?: Record<string, string>;
           };
           const address = data.address ?? {};
+          const city =
+            address.city ??
+            address.town ??
+            address.village ??
+            address.municipality ??
+            address.city_district;
           const parts = [
-            address.road,
-            address.suburb ?? address.neighbourhood,
-            address.city ?? address.town ?? address.village,
+            city,
             address.state,
           ].filter(Boolean);
-          const resolved = parts.join(", ");
+          const resolved = city ? parts.join(", ") : "";
           setRemote({
             message: resolved
-              ? "Localização encontrada. Confira e ajuste se precisar."
-              : "Não conseguimos detalhar o endereço. Digite o CEP ou o bairro.",
+              ? "Sugestão aproximada de cidade e estado. Confirme antes de usar."
+              : "Não conseguimos identificar sua cidade. Digite o bairro, cidade ou CEP.",
             address: resolved,
           });
-          if (resolved) setLocation(resolved);
         } catch {
           setRemote({
             message:
@@ -85,7 +108,7 @@ export function QuoteForm() {
         });
         setLocating(false);
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 },
     );
   }
 

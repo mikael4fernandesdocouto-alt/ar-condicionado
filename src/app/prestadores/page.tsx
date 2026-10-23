@@ -57,7 +57,7 @@ export default function ProvidersPage() {
       <SiteHeader quoteHref={`${BASE_PATH}/#orcamento`} />
 
       <main>
-        <section className="provider-hero relative isolate overflow-hidden bg-azul-950 pt-28 pb-16 sm:pt-32 sm:pb-20">
+        <section className="provider-hero relative isolate flex min-h-svh items-center overflow-hidden bg-azul-950 pt-28 pb-16 sm:pt-32 sm:pb-20">
           <div
             aria-hidden
             className="provider-hero-glow absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(65,128,171,0.38),transparent_62%)]"
