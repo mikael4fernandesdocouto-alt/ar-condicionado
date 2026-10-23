@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Check } from "lucide-react";
 import { SERVICES, getService } from "@/lib/services";
 import { requestSchema, type RequestForm } from "@/lib/request-schema";
@@ -16,6 +17,8 @@ export function QuoteForm() {
   const [location, setLocation] = useState("");
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [privacyError, setPrivacyError] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [remote, setRemote] = useState({
     message: "",
@@ -88,6 +91,10 @@ export function QuoteForm() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!privacyAccepted) {
+      setPrivacyError(true);
+      return;
+    }
     const parsed = requestSchema.safeParse({
       serviceId,
       location,
@@ -271,6 +278,40 @@ export function QuoteForm() {
         </Field>
 
         <div className="flex flex-col gap-3 border-t border-azul-200 pt-6">
+          <p className="text-sm leading-relaxed text-azul-700">
+            Leia a{" "}
+            <Link
+              href="/privacidade/"
+              target="_blank"
+              className="underline decoration-azul-300 underline-offset-4"
+            >
+              Política de Privacidade
+            </Link>{" "}
+            antes de enviar seu pedido.
+          </p>
+          <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-azul-700">
+            <input
+              type="checkbox"
+              name="privacy-accepted"
+              required
+              checked={privacyAccepted}
+              onChange={(event) => {
+                setPrivacyAccepted(event.target.checked);
+                if (event.target.checked) setPrivacyError(false);
+              }}
+              aria-invalid={privacyError}
+              className="mt-0.5 size-4 shrink-0 accent-azul-600"
+            />
+            <span>
+              Li e aceito a Política de Privacidade e autorizo o uso dos dados
+              para atender e encaminhar meu pedido.
+            </span>
+          </label>
+          {privacyError ? (
+            <p role="alert" className="border-l-2 border-azul-700 pl-2 text-sm font-medium text-azul-700">
+              Aceite a Política de Privacidade para continuar.
+            </p>
+          ) : null}
           <button
             type="submit"
             className="rounded-frame bg-azul-600 px-6 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-azul-700 active:translate-y-0"

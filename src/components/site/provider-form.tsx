@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Check } from "lucide-react";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
@@ -261,6 +262,13 @@ export function ProviderForm() {
         </div>
 
         <div className="flex flex-col gap-3 border-t border-azul-200 pt-6">
+          <p className="text-sm leading-relaxed text-azul-700">
+            Consulte a{" "}
+            <Link href="/privacidade/" target="_blank" className="underline decoration-azul-300 underline-offset-4">
+              Política de Privacidade
+            </Link>{" "}
+            para saber como os dados do cadastro serão usados e encaminhados.
+          </p>
           <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-azul-700">
             <input
               type="checkbox"
@@ -270,7 +278,7 @@ export function ProviderForm() {
               className="mt-0.5 size-4 shrink-0 accent-azul-600"
             />
             <span>
-              Li e aceito os termos acima, incluindo a taxa de indicação de{" "}
+              Li e aceito os termos do cadastro e a Política de Privacidade, incluindo a taxa de indicação de{" "}
               <strong className="font-semibold text-azul-950">R$ 200</strong>{" "}
               para serviços de R$ 400 ou mais, ou{" "}
               <strong className="font-semibold text-azul-950">30%</strong> para
