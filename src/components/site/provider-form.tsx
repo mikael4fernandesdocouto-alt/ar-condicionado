@@ -204,7 +204,7 @@ export function ProviderForm() {
           {errors.services ? (
             <p
               role="alert"
-              className="border-l-2 border-azul-700 pl-2 text-sm font-medium text-azul-700"
+              className="border-l-2 border-red-600 pl-2 text-sm font-semibold text-red-700"
             >
               {errors.services}
             </p>
@@ -257,7 +257,7 @@ export function ProviderForm() {
           {errors.terms ? (
             <p
               role="alert"
-              className="border-l-2 border-azul-700 pl-2 text-sm font-medium text-azul-700"
+              className="border-l-2 border-red-600 pl-2 text-sm font-semibold text-red-700"
             >
               {errors.terms}
             </p>

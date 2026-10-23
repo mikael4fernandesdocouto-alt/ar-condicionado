@@ -34,7 +34,7 @@ export function Field({
       {error ? (
         <p
           role="alert"
-          className="border-l-2 border-azul-700 pl-2 text-sm font-medium text-azul-700"
+          className="border-l-2 border-red-600 pl-2 text-sm font-semibold text-red-700"
         >
           {error}
         </p>
@@ -49,6 +49,6 @@ export const fieldClasses = (hasError?: boolean) =>
     "placeholder:text-azul-600 transition-colors duration-150 focus:bg-white",
     "focus:border-azul-600",
     hasError
-      ? "border-azul-700 ring-1 ring-azul-700/30"
+      ? "border-red-600 ring-1 ring-red-600/25"
       : "border-azul-200",
   );
