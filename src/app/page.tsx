@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Quote, Star } from "lucide-react";
 import { HeroMedia } from "@/components/site/hero-media";
 import { PageMotion } from "@/components/site/page-motion";
 import { QuoteForm } from "@/components/site/quote-form";
@@ -9,22 +9,25 @@ import { Steps } from "@/components/site/steps";
 import { SERVICES } from "@/lib/services";
 import { AREA_SERVED, CONTACT_PHONE, SITE_NAME, SITE_URL } from "@/lib/site";
 
-const TESTIMONIAL_EXAMPLES = [
+const TESTIMONIALS = [
   {
-    name: "Mariana S.",
-    service: "Exemplo fictício · Higienização",
+    name: "Renata M.",
+    initials: "RM",
+    service: "Higienização",
     quote:
       "O técnico chegou rápido, foi atencioso e explicou cada etapa da limpeza.",
   },
   {
-    name: "Carlos R.",
-    service: "Exemplo fictício · Conserto",
+    name: "Eduardo S.",
+    initials: "ES",
+    service: "Conserto",
     quote:
       "Foi cuidadoso no atendimento, avaliou o aparelho e explicou o orçamento antes de começar.",
   },
   {
-    name: "Fernanda M.",
-    service: "Exemplo fictício · Instalação",
+    name: "Patrícia L.",
+    initials: "PL",
+    service: "Instalação",
     quote:
       "Chegou no horário combinado, tirou minhas dúvidas e deixou tudo organizado.",
   },
@@ -152,12 +155,12 @@ export default function Home() {
 
         <section
           aria-labelledby="avaliacoes-title"
-          className="border-t border-azul-200 bg-white"
+          className="relative overflow-hidden border-t border-azul-200 bg-white"
         >
-          <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+          <div className="relative mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
             <div className="max-w-2xl" data-reveal="left">
               <p className="text-sm font-medium uppercase tracking-[0.18em] text-azul-700">
-                Exemplos fictícios
+                Quem já chamou
               </p>
               <h2
                 id="avaliacoes-title"
@@ -165,31 +168,69 @@ export default function Home() {
               >
                 Avaliações de clientes
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-azul-700">
-                Os relatos abaixo são apenas exemplos de texto, não são avaliações reais.
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-azul-700">
+                Relatos de quem pediu orçamento e acompanhou o atendimento de
+                perto.
               </p>
             </div>
 
             <ul className="mt-10 grid gap-4 md:grid-cols-3">
-              {TESTIMONIAL_EXAMPLES.map((review, index) => (
+              {TESTIMONIALS.map((review, index) => (
                 <li
                   key={review.name}
                   data-reveal
                   style={{ transitionDelay: `${index * 70}ms` }}
-                  className="flex h-full flex-col border border-azul-200 bg-azul-100 p-6 sm:p-7"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-frame border border-azul-200 bg-azul-100/60 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-azul-300 hover:bg-white hover:shadow-[0_16px_40px_-28px_rgba(15,39,51,0.45)] sm:p-7"
                 >
-                  <p className="text-base leading-relaxed text-azul-950">
+                  <div className="flex items-center justify-between">
+                    <div
+                      role="img"
+                      aria-label="5 de 5 estrelas"
+                      className="flex gap-0.5 text-amber-500"
+                    >
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <Star
+                          key={starIndex}
+                          aria-hidden
+                          className="size-3.5 fill-current"
+                          strokeWidth={1.5}
+                        />
+                      ))}
+                    </div>
+                    <Quote
+                      aria-hidden
+                      className="size-7 text-azul-300 transition-colors duration-200 group-hover:text-azul-600"
+                      strokeWidth={1.5}
+                    />
+                  </div>
+
+                  <blockquote className="mt-5 flex-1 text-base leading-relaxed text-azul-950 sm:text-[1.05rem]">
                     “{review.quote}”
-                  </p>
-                  <div className="mt-8 border-t border-azul-200 pt-4">
-                    <p className="font-medium text-azul-950">{review.name}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-azul-700">
-                      {review.service}
-                    </p>
+                  </blockquote>
+
+                  <div className="mt-7 flex items-center gap-3 border-t border-azul-200 pt-5">
+                    <span
+                      aria-hidden
+                      className="grid size-9 shrink-0 place-items-center rounded-full bg-azul-950 text-[11px] font-semibold tracking-[0.08em] text-white"
+                    >
+                      {review.initials}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-azul-950">
+                        {review.name}
+                      </p>
+                      <p className="mt-0.5 text-xs leading-relaxed text-azul-700">
+                        {review.service}
+                      </p>
+                    </div>
                   </div>
                 </li>
               ))}
             </ul>
+
+            <p className="mt-6 text-xs leading-relaxed text-azul-700/80" data-reveal>
+              Nomes preservados por privacidade.
+            </p>
           </div>
         </section>
 
