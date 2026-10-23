@@ -9,6 +9,27 @@ import { Steps } from "@/components/site/steps";
 import { SERVICES } from "@/lib/services";
 import { AREA_SERVED, CONTACT_PHONE, SITE_NAME, SITE_URL } from "@/lib/site";
 
+const TESTIMONIAL_EXAMPLES = [
+  {
+    name: "Mariana S.",
+    service: "Exemplo fictício · Higienização",
+    quote:
+      "O técnico chegou rápido, foi atencioso e explicou cada etapa da limpeza.",
+  },
+  {
+    name: "Carlos R.",
+    service: "Exemplo fictício · Conserto",
+    quote:
+      "Foi cuidadoso no atendimento, avaliou o aparelho e explicou o orçamento antes de começar.",
+  },
+  {
+    name: "Fernanda M.",
+    service: "Exemplo fictício · Instalação",
+    quote:
+      "Chegou no horário combinado, tirou minhas dúvidas e deixou tudo organizado.",
+  },
+];
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "HVACBusiness",
@@ -126,6 +147,49 @@ export default function Home() {
             </div>
 
             <Steps />
+          </div>
+        </section>
+
+        <section
+          aria-labelledby="avaliacoes-title"
+          className="border-t border-azul-200 bg-white"
+        >
+          <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+            <div className="max-w-2xl" data-reveal="left">
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-azul-700">
+                Exemplos fictícios
+              </p>
+              <h2
+                id="avaliacoes-title"
+                className="mt-3 font-display text-4xl leading-none text-azul-950 sm:text-5xl"
+              >
+                Avaliações de clientes
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-azul-700">
+                Os relatos abaixo são apenas exemplos de texto, não são avaliações reais.
+              </p>
+            </div>
+
+            <ul className="mt-10 grid gap-4 md:grid-cols-3">
+              {TESTIMONIAL_EXAMPLES.map((review, index) => (
+                <li
+                  key={review.name}
+                  data-reveal
+                  style={{ transitionDelay: `${index * 70}ms` }}
+                  className="flex h-full flex-col border border-azul-200 bg-azul-100 p-6 sm:p-7"
+                >
+                  <p className="text-base leading-relaxed text-azul-950">
+                    “{review.quote}”
+                  </p>
+                  <div className="mt-8 border-t border-azul-200 pt-4">
+                    <p className="font-medium text-azul-950">{review.name}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-azul-700">
+                      {review.service}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
