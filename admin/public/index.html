@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0f2733" />
+    <title>Profissionais | Arperto</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="login-view" class="login-shell">
+      <section class="login-card" aria-labelledby="login-title">
+        <header class="brand">
+          <span class="brand-mark" aria-hidden="true">AR</span>
+          <span class="brand-copy">
+            <strong>Arperto</strong>
+            <small>Painel interno</small>
+          </span>
+        </header>
+        <p class="eyebrow">Acesso restrito</p>
+        <h1 id="login-title">Profissionais</h1>
+        <p class="muted">
+          Este painel fica somente neste computador. Nenhum cadastro aparece no
+          site.
+        </p>
+        <form id="login-form" class="stack">
+          <label class="field">
+            <span>Senha do painel</span>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              autofocus
+            />
+          </label>
+          <p id="login-error" class="form-error" role="alert"></p>
+          <button class="btn btn-primary btn-block" type="submit">
+            Entrar
+          </button>
+        </form>
+        <p class="login-foot">Dados salvos localmente, sem envio para a nuvem.</p>
+      </section>
+    </div>
+
+    <div id="app-view" class="app-shell" hidden>
+      <header class="topbar">
+        <div class="brand brand-light">
+          <span class="brand-mark" aria-hidden="true">AR</span>
+          <span class="brand-copy">
+            <strong>Arperto</strong>
+            <small>Profissionais</small>
+          </span>
+        </div>
+        <div class="topbar-actions">
+          <span class="local-badge"><span aria-hidden="true"></span> Somente neste PC</span>
+          <button id="logout-button" class="btn btn-ghost" type="button">Sair</button>
+        </div>
+      </header>
+
+      <main class="page">
+        <section class="page-head">
+          <div>
+            <p class="eyebrow">Cadastro interno</p>
+            <h1>Profissionais</h1>
+            <p class="muted">
+              Organize os contatos da sua equipe. Estes dados não são publicados
+              no site.
+            </p>
+          </div>
+          <button id="add-button" class="btn btn-primary" type="button">
+            <span aria-hidden="true">+</span> Novo profissional
+          </button>
+        </section>
+
+        <section class="stats" aria-label="Resumo">
+          <article class="stat">
+            <span class="stat-label">Profissionais</span>
+            <strong id="count-total">0</strong>
+          </article>
+          <article class="stat">
+            <span class="stat-label">Regiões atendidas</span>
+            <strong id="count-regions">0</strong>
+          </article>
+          <article class="stat stat-wide">
+            <span class="stat-label">Armazenamento</span>
+            <strong>Local e privado</strong>
+            <span class="stat-note">Nada é enviado para o site público.</span>
+          </article>
+        </section>
+
+        <section class="content-card" aria-labelledby="list-title">
+          <div class="toolbar">
+            <div>
+              <h2 id="list-title">Cadastros</h2>
+              <p id="list-count" class="muted">0 de 0</p>
+            </div>
+            <label class="search">
+              <span class="sr-only">Buscar profissional</span>
+              <input id="search-input" type="search" placeholder="Buscar por nome ou região" />
+            </label>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Região</th>
+                  <th>WhatsApp</th>
+                  <th>Google Maps</th>
+                  <th class="actions-heading">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="professional-rows"></tbody>
+            </table>
+          </div>
+
+          <div id="empty-state" class="empty-state" hidden>
+            <span class="empty-icon" aria-hidden="true">+</span>
+            <h3 id="empty-title">Nenhum profissional cadastrado</h3>
+            <p id="empty-copy" class="muted">
+              Adicione o primeiro profissional para começar.
+            </p>
+            <button id="empty-add-button" class="btn btn-secondary" type="button">
+              Adicionar profissional
+            </button>
+          </div>
+        </section>
+
+        <p class="page-foot">
+          Os cadastros ficam em um arquivo local neste computador. Faça backup
+          dessa pasta se precisar trocar de máquina.
+        </p>
+      </main>
+    </div>
+
+    <dialog id="editor-dialog" class="dialog">
+      <form id="editor-form" class="dialog-card" novalidate>
+        <header class="dialog-head">
+          <div>
+            <p id="editor-eyebrow" class="eyebrow">Novo cadastro</p>
+            <h2 id="editor-title">Adicionar profissional</h2>
+          </div>
+          <button class="icon-button" type="button" data-close aria-label="Fechar">×</button>
+        </header>
+        <div class="form-grid">
+          <label class="field field-full">
+            <span>Nome</span>
+            <input id="field-name" name="name" maxlength="120" required autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Região</span>
+            <input
+              id="field-region"
+              name="region"
+              maxlength="120"
+              placeholder="Cidade - UF"
+              required
+              autocomplete="off"
+            />
+          </label>
+          <label class="field">
+            <span>Link do WhatsApp</span>
+            <input
+              id="field-whatsapp"
+              name="whatsapp"
+              inputmode="url"
+              placeholder="https://wa.me/55..."
+              autocomplete="off"
+            />
+          </label>
+          <label class="field field-full">
+            <span>Link do Google Maps</span>
+            <input
+              id="field-maps"
+              name="maps"
+              inputmode="url"
+              placeholder="https://maps.app.goo.gl/..."
+              autocomplete="off"
+            />
+          </label>
+        </div>
+        <p id="editor-error" class="form-error" role="alert"></p>
+        <footer class="dialog-actions">
+          <button class="btn btn-secondary" type="button" data-close>Cancelar</button>
+          <button id="save-button" class="btn btn-primary" type="submit">Salvar</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="delete-dialog" class="dialog">
+      <div class="dialog-card">
+        <p class="eyebrow">Excluir cadastro</p>
+        <h2>Remover profissional?</h2>
+        <p class="muted">
+          <strong id="delete-name"></strong> será excluído apenas deste painel.
+          Essa ação não pode ser desfeita.
+        </p>
+        <p id="delete-error" class="form-error" role="alert"></p>
+        <footer class="dialog-actions">
+          <button class="btn btn-secondary" type="button" data-close>Cancelar</button>
+          <button id="confirm-delete-button" class="btn btn-danger" type="button">
+            Excluir
+          </button>
+        </footer>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

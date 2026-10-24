@@ -40,4 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# local admin data
+/admin/data/professionals.json
+/admin/data/*.tmp
+/admin/*.log
+
+# internal strategy docs (kept local)
+/founder/
+
 dev.log
